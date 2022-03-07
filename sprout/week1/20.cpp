@@ -2,37 +2,44 @@
 using namespace std;
 
 int t,n,k,m,x;
-int arr[1000005],exist[1005];
+int arr[1000005];
+bitset<200005> exist;
 string s;
 
 int main(){
+    ios::sync_with_stdio(0),cin.tie(0);
     cin >>t;int name=1;
     while(t--){
         cout<<"line #"<<name<<'\n';
-        queue<int> q[1000],qt;
-        fill(exist,exist+1005,0);
+        queue<int> q[1005],qt;
         cin >>n;int tn;
-        for(int i=0;i<n;++i){
+        for(int i=1;i<=n;++i){
             cin >>tn;
             while(tn--)cin >>x,arr[x]=i;
         }
         cin >>m;cin.ignore();
         for(int i=0;i<m;++i){
-            cin >>s;cout<<"This is ... "<<s<<" ...string\n";
+            cin >>s;
             if(s[0]=='E'){
-                cout<<"EEEEEE\n";
-                x=s[s.size()-1]-'0';
+                cin >>x;//cout<<x<<'\n';
                 int id=arr[x];
                 if(exist[id]){
+                //    cout<<"pushx"<<x<<id<<'\n';
                     q[id].push(x);
-                }else{
-                    qt.push(id);
+                }else if(!arr[id]){
+                    qt.push(x);
                 }
-            }else if(s[0]=="D"){
+                else{
+                //    cout<<"pushid"<<id<<'\n';
+                    qt.push(id);
+                    q[id].push(x);
+                    exist[id]=1;
+                }
+            }else if(s[0]=='D'){
                 int fr=qt.front();
-                cout<<"OOOOO)"<<q[fr].front()<<'\n';
-                q[fr].pop();
-                if(q[fr].empty())qt.pop();
+                if(arr[id]){cout<<q[fr].front()<<'\n';
+                q[fr].pop();}
+                if(q[fr].empty())exist[fr]=0,qt.pop();
             }
         }
         ++name;
