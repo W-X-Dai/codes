@@ -21,16 +21,14 @@ int main(){
         for(int i=0;i<m;++i){
             cin >>s;
             if(s[0]=='E'){
-                cin >>x;//cout<<x<<'\n';
+                cin >>x;
                 int id=arr[x];
                 if(exist[id]){
-                //    cout<<"pushx"<<x<<id<<'\n';
                     q[id].push(x);
                 }else if(!arr[id]){
                     qt.push(x);
                 }
                 else{
-                //    cout<<"pushid"<<id<<'\n';
                     qt.push(id);
                     q[id].push(x);
                     exist[id]=1;

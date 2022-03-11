@@ -1,37 +1,36 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define ll long long
 using namespace std;
-
-
-stack<int> st;
-int arr[1000006];
+ 
+int n, a;
+ll ans;
+stack<int>st,cnt;
 
 void sol(){
-	while(!st.empty())st.pop();
-	int n,cnt=0;
+    ios::sync_with_stdio(0);cin.tie(0);
+    while(!st.empty())st.pop();
+	while(!cnt.empty())cnt.pop();
+	ans=0;
 
 	cin >>n;
-	for(int i=0;i<n;++i)cin >>arr[i];
-	for(int i=0;i<n;++i){
-		if(st.empty())st.push(i);
-		else if(arr[i]>=arr[st.top()]){
-			while(!st.empty() && arr[i]>=arr[st.top()]){
-				++cnt;
-				if(arr[i]!=arr[st.top()])st.pop(); 
-			}
-			
-		}else st.push(i);
-	}
-	while(!st.empty())st.pop();
-	for(int i=n-1;i>=0;--i){
-		if(st.empty())st.push(i);
-		else if(arr[i]>arr[st.top()]){
-			while(!st.empty() && arr[i]>arr[st.top()]){
-				++cnt;
-				st.pop();
-			}
-		}else st.push(i);
-	}	
-	cout<<cnt<<'\n';
+    for (int i=0;i<n;i++){
+        cin >>a;
+        while (!st.empty() && st.top()<a){
+            ans+=cnt.top();
+            cnt.pop();
+            st.pop();
+        }
+        if (!st.empty() && st.top()==a){
+            ans+=cnt.top();
+            cnt.top()++;
+        }
+        else {
+            st.push(a);
+            cnt.push(1);
+        }
+        if (st.size() > 1) ans++;
+    }
+    cout<<ans<<'\n';	
 }
 
 int main(){

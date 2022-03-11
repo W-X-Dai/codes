@@ -2,28 +2,41 @@
 #define AC ios::sync_with_stdio(0),cin.tie(0);
 using namespace std;
 
-int T,N,arr[100005],x;
+int T,arr[100005],x;
 stack<int> st;
-queue<int> q;
+
+inline void sol(){
+    AC
+    int n,bk;
+    int point=1;
+
+
+    cin >>n;
+    for (int i=0;i<n;i++)
+        cin >>arr[i];
+    
+    int i;
+    for(i=0;i<n;i++){
+        if(!st.empty() && st.top()==arr[i]){
+            st.pop();
+        }else if(arr[i]>=point){
+            for(int j=point;j<arr[i];j++)
+                st.push(j);
+            point=arr[i]+1;
+        }else break;
+    }
+    if(i==n)cout<<"Yes\n";
+    else cout<<"No\n";
+        
+
+}
+
 
 int main(){
-//  AC    
     
     cin >>T;
     while(T--){
-        while(!st.empty())st.pop();
-        while(!q.empty())q.pop();
-        cin >>N;
-        for(int i=1;i<=N;++i){
-            cin >>x;q.push(x);
-        }
-        int cnt=0,j=1;
-        for(int i=1;i<=N;++i){
-            if(i==q.front());
-        }
-        cout<<"cnt:"<<cnt<<'\n';
-        if(cnt==N)cout<<"Yes\n";
-        else cout<<"No\n";
+        sol();
     }
 
 }
