@@ -37,9 +37,10 @@ int main(){
                 }
             }else if(s[0]=='D'){
                 int fr=qt.front();
-                if(arr[id]){cout<<q[fr].front()<<'\n';
+                if(arr[fr]){cout<<q[fr].front()<<'\n';
                 q[fr].pop();}
-                if(q[fr].empty())exist[fr]=0,qt.pop();
+                else {cout<<qt.front()<<'\n';qt.pop();}
+                if(arr[fr] && q[fr].empty())exist[fr]=0,qt.pop();
             }
         }
         ++name;
