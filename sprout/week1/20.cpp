@@ -4,14 +4,15 @@ using namespace std;
 int t,n,k,m,x;
 int arr[1000005];
 bitset<200005> exist;
-string s;
+string s;queue<int> q[1005],qt;
 
 int main(){
     ios::sync_with_stdio(0),cin.tie(0);
     cin >>t;int name=1;
     while(t--){
+        while(!qt.empty())qt.pop();
         cout<<"line #"<<name<<'\n';
-        queue<int> q[1005],qt;
+        
         cin >>n;int tn;
         for(int i=1;i<=n;++i){
             cin >>tn;
@@ -29,6 +30,7 @@ int main(){
                     qt.push(x);
                 }
                 else{
+                    while(!q[id].empty())q[id].pop();
                     qt.push(id);
                     q[id].push(x);
                     exist[id]=1;
