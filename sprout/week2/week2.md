@@ -2,6 +2,7 @@
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
 </script>
+
 # week2手寫作業 戴偉璿
 ## 第一題：
 > $note:\displaystyle\lim_{x\to \infty}k=k,\displaystyle\lim_{x\to \infty}\cfrac{1}{x}=0$
