@@ -8,7 +8,9 @@
 > $note:\displaystyle\lim_{x\to \infty}k=k,\displaystyle\lim_{x\to \infty}\cfrac{1}{x}=0$
 
 $\text{a}.$
+
 $\displaystyle\lim_{n\to \infty}\cfrac{3n+1}{n-1}=\cfrac{{\displaystyle\lim_{n\to \infty}(3+\frac{1}{n}})}{{\displaystyle\lim_{n\to \infty}(1-\frac{1}{n}})}=\cfrac{3}{1}=3\\$
+
 $\text{b}.$
 $\displaystyle\lim_{n\to \infty}\cfrac{n}{n^2+1}=\cfrac{{\displaystyle\lim_{n\to \infty}1}}{{\displaystyle\lim_{n\to \infty}(n+\frac{1}{n}})}=\cfrac{1}{n}$
 
@@ -73,5 +75,10 @@ $i$得分為：$\cfrac{i^2-i}{2}$，$n-i+1$得分為$\cfrac{(n-i+1)^2-(n-i+1)}{2
 將三步驟的分數相加：$ni-i^2+i+\cfrac{i^2-i}{2}+\cfrac{(n-i+1)^2-(n-i+1)}{2}=\cfrac{n^2+n}{2}$，成立
 
 故命題成立。
+
+
+
+
+$\lim_{n\to \infty}\cfrac{3n+1}{n-1}=\cfrac{{\lim\limits_{n\to \infty}(3+\frac{1}{n}})}{{\lim_{n\to \infty}(1-\frac{1}{n}})}=\cfrac{3}{1}=3\\$
 
 

@@ -11,7 +11,7 @@ bool vist[100005];
 void dfs(int now,vector<int> arr,int cnt){
 	if(arr.size()==n){
 		if(ct>cnt){
-			ans=arr,ct=cnt;
+			ans=arr,ct=cnt;	
 		}else if(ct==cnt&&arr<ans){
 			ct=cnt;
 		}

@@ -7,6 +7,7 @@ int n,col[200005],pre[200005],rtd[200005],ans[200005];
 vector<int> v[200005];
 
 inline int dfs(int root){
+    cout<<root<<'\n';
     pre[root]+=col[root];
     if(v[root].empty())return col[root];
 //    if(pre[root]!=0)return pre[root];
