@@ -8,7 +8,7 @@ uniform_int_distribution<long long> dist(1, 1999),dis(1,100000000);
 
 inline void gen(int num){
     cout<<num<<'\n';
-    string m=to_string(num)+".in";
+    string m="LIS"+to_string(num)+".in";
     ofstream f(m,ios::trunc);
     
     int n=1999;f<<n<<'\n';

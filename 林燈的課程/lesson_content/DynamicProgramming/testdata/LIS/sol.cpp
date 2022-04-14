@@ -5,7 +5,7 @@ int dp[2005],arr[2005],n;
 
 inline void sol(int num){
     cout<<num<<'\n';
-    string m1=to_string(num)+".in",m2=to_string(num)+".out";
+    string m1="LIS"+to_string(num)+".in",m2="LIS"+to_string(num)+".out";
 
     ofstream f2(m2,ios::trunc);
     ifstream f1(m1,ios::in);
