@@ -3,30 +3,24 @@ using namespace std;
 
 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 mt19937 rd(seed); 
-uniform_int_distribution<long long> dist(1, 9999),dis(1,100000); 
+uniform_int_distribution<long long> dist(1, 100),dis(1,100000); 
 
 inline void testdata(int num){
+    cout<<num<<'\n';
     string s1="C"+to_string(num)+".in";
     string s2="C"+to_string(num)+".out";
     ofstream f1(s1,ios::trunc),f2(s2,ios::trunc);
-
+    int n=dist(rd)%10+90;
     
-    f1<<100000<<" ";
+    f1<<n<<"\n";
     int arr[100005];
-    for(int i=1;i<=100000;++i){
+    for(int i=1;i<=n;++i){
         arr[i]=dist(rd);
     }
-
-    int l,r;
-    l=dis(rd),r=dis(rd);l=100000,r=100000;
-    if(l>r)swap(l,r);f2<<l<<" "<<r<<'\n';
-    long long cnt=0;
-    for(int i=l;i<=r;++i)cnt+=arr[i];
-    f1<<cnt<<'\n';
-    for(int i=1;i<=100000;++i)f1<<arr[i]<<" ";
+    for(int i=1;i<=n;++i)f1<<arr[i]<<" ";
     f1<<'\n';
 }
 
 int main(){
-    for(int i=14;i<15;++i)testdata(i);
+    for(int i=1;i<=3;++i)testdata(i);
 }

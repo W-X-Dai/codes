@@ -6,20 +6,8 @@ using namespace std;
 ll arr[100005],pre[100005];
 ll n,x;
 
-inline void sol(int num){
-    string s1="C"+to_string(num)+".in";
-    string s2="C"+to_string(num)+".out";
-
-    ifstream f1(s1,ios::in);
-    ofstream f2(s2,ios::trunc);
-
-    
-    
-}
-
-
 int main(){
-    
+    freopen("C3.in","r",stdin);
     ios::sync_with_stdio(0),cin.tie(0);
     cin >>n>>x;
     for(int i=1;i<=n;++i){
@@ -42,6 +30,5 @@ int main(){
     }
     cout<<"-1"<<'\n';
 
-    
 }
 
