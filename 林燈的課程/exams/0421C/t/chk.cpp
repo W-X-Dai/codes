@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
     ll arr[100005],pre[100005];
     ll n,x,l,r,la,ra;
 
-    l=ouf.readInt();      
+    l=ouf.readInt();
     r=ouf.readInt();
     
     la=ans.readInt();
