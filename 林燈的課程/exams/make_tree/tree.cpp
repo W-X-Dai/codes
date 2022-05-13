@@ -12,18 +12,18 @@ unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 mt19937 rd(seed); 
 uniform_int_distribution<long long> dist(1, 1000),dis(1,100000000); 
 
-vector<int> v[100005];
+vector<int> v[1000005];
 vector<pii> o;
-int arr[100005],therest,chi;
+int arr[1000005],therest,chi;
 
 
 int main(){
     ios::sync_with_stdio(0),cin.tie(0);
 
     srand(time(0));
-    int n;
-    for(int i=1;i<=100000;++i)arr[i]=i;
-    cin >>n;
+    int n;cin >>n;
+    for(int i=1;i<=n;++i)arr[i]=i;
+    
     random_shuffle(arr+1,arr+n+1);
 
     chi=2;
@@ -35,25 +35,25 @@ int main(){
             ++chi;
         }
     }
-    for(int i=1;i<=n;++i)cout<<arr[i]<<" ";
-    cout<<'\n';
-    for(int i=1;i<=n;++i){
-        cout<<i<<":";
-        for(int j:v[i])cout<<j<<" ";
-        cout<<'\n';
-    }
+    // for(int i=1;i<=n;++i)cout<<arr[i]<<" ";
+    // cout<<'\n';
+    // for(int i=1;i<=n;++i){
+    //     cout<<i<<":";
+    //     for(int j:v[i])cout<<j<<" ";
+    //     cout<<'\n';
+    // }
 
-    cout<<'\n';
+//    cout<<'\n';
 
     for(int i=1;i<=n;++i){
         int tmp=i;
         i=arr[i];
-        cout<<arr[i]<<":";
+    //    cout<<arr[i]<<":";
         for(int j:v[i]){
-            cout<<arr[j]<<" ";
+        //    cout<<arr[j]<<" ";
             o.eb(m_p(arr[i],arr[j]));
         }
-        cout<<'\n';
+    //    cout<<'\n';
         i=tmp;
     }
     ofstream f("tree.test",ios::trunc);
@@ -66,12 +66,12 @@ int main(){
     //     i=tmp;
     // }
 
-    sort(arr+1,arr+100001);
+    sort(arr+1,arr+n+1);
     random_shuffle(arr,arr+n-1);
 
-    cout<<'\n';
+//    cout<<'\n';
     for(int i=0;i<n-1;++i){
-        cout<<o[arr[i]].ff<<" "<<o[arr[i]].ss<<'\n';
+    //    cout<<o[arr[i]].ff<<" "<<o[arr[i]].ss<<'\n';
         f<<o[arr[i]].ff<<" "<<o[arr[i]].ss<<'\n';
     }
 

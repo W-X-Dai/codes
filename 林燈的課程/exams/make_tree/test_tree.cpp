@@ -3,9 +3,9 @@
 
 using namespace std;
 
-vector<int> v[100005];
-int n,a,b,root[100005],parent[100005],ok;
-int vis[100005];
+vector<int> v[1000005];
+int n,a,b,root[1000005],parent[1000005],ok;
+int vis[1000005];
 
 inline void dfs(int rt){
     if(vis[rt])ok=1,cout<<"wrong\n";
