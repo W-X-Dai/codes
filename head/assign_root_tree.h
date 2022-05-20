@@ -6,6 +6,8 @@ using namespace std;
 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 mt19937 rd(seed); 
 uniform_int_distribution<long long> dist(1, 1000),dis(1,100000000); 
+uniform_int_distribution<long long> n1e2(1,100),n1e3(1,1000),n1e4(1,10000),n1e5(1,100000),n1e6(1,1000000),n1e9(1,1000000000);
+
 
 vector<int> v[1000005];
 vector<pii> o;

@@ -5,13 +5,13 @@ using namespace std;
 
 int n,m;
 int ori[N],bad[N];
-
 vector<int> v[100005];
 
 inline void dfs(int root){
-    if(bad[root]=1)return;
+//    cout<<root<<'\n';
+    if(bad[root]==1)return;
     bad[root]=1;
-    for(int i:v[root]){
+    for(auto i:v[root]){
         dfs(i);
     }
 }
@@ -24,6 +24,7 @@ int main(){
         cin >>a>>b;
         v[a].eb(b);
     }
+    for(int i=0;i<m;++i)dfs(ori[i]);
     for(int i=1;i<=n;++i){
         cout<<(bad[i] ^ 1)<<" ";
     }

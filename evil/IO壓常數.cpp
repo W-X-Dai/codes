@@ -27,9 +27,11 @@ void out(int x){
     for(;len>=1;--len){
         putchar(num[len]+48);
     }
+    putchar('\n');
 }
 
 int main(){
     int x=in();
     out(x-10);
+    out(x);
 }
