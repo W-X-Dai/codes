@@ -17,7 +17,7 @@ int main(){
     for(int i=1;i<=n;++i){
         int tmp=lower_bound(pre+1+i,pre+1+n,x+pre[i-1])-pre;
 //        cout<<i<<" "<<tmp<<" "<<pre[tmp]-pre[i-1]<<'\n';
-        if(pre[tmp]-pre[i-1]==x){
+         if(pre[tmp]-pre[i-1]==x){
             cout<<i<<" "<<tmp<<'\n';
             return 0;
         }
