@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2022.6.6)  11 JUN 2022 11:57
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2022.6.17)  17 JUN 2022 23:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -364,12 +364,12 @@ Missing character: There is no 1 in font nullfont!
 
 ] (./tex.aux) ) 
 Here is how much of TeX's memory you used:
- 4504 strings out of 481804
- 140787 string characters out of 5937877
- 425669 words of memory out of 5000000
- 21531 multiletter control sequences out of 15000+600000
+ 4504 strings out of 479819
+ 140787 string characters out of 5895846
+ 430866 words of memory out of 5000000
+ 21662 multiletter control sequences out of 15000+600000
  532354 words of font info for 26 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
+ 1348 hyphenation exceptions out of 8191
  44i,4n,67p,256b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on tex.pdf (1 page).
