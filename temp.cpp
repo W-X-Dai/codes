@@ -1,17 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-const int N=5e4+5;//10^4+5=10005
-int n,a[N],b[N],dif[N];
-
-inline int calc(int a,int b){
-    return a^b;
+inline bool det(int n){
+    for(int i=2;i*i<=n;++i){
+        if(n%i==0){
+            return false;
+        }
+    }
+    return true;
 }
 
 int main(){
-//    ios::sync_with_stdio(0),cin.tie(0);
-    int a,b;
-    while(cin >>a>>b){
-        cout<<calc(a,b)<<'\n';
+    
+    for(int i=2;i<100;++i){
+        if(det(i))cout<<i<<" ";
     }
+    cout<<'\n';
 }
