@@ -12,8 +12,8 @@ int n,q,a,b,arr[N];
 vector<int> v[N];
 
 inline bool det(int l,int r,int x){
-    int t=upper_bound(v[x]+l+1,v[x]+r+1,x)-lower_bound(v[x]+l+1,v[x]+r+1,x);
-    return t>(r-l+1)/2;
+//    int t=upper_bound(v[x]+l+1,v[x]+r+1,x)-lower_bound(v[x]+l+1,v[x]+r+1,x);
+//    return t>(r-l+1)/2;
 }
 
 int main(){
