@@ -1,8 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
-
 int main(){
-    cout<<-1%10;
+    cout<<"Hello World!\n";
+    return 0;
 }
