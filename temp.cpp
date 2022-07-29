@@ -6,6 +6,8 @@ const int inf=0x3f3f3f3f;
 int n,m,t;
 int dp[100005],w[105],v[105];
 
+inline int lowbit(int x) { return x&-x;}
+
 int main(){
     ios::sync_with_stdio(0),cin.tie(0);
     fill(dp,dp+100005,inf);
