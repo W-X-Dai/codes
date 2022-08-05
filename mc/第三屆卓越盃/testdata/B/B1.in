@@ -1,0 +1,13 @@
+7 6
+/ *a
+/ *b
+/ *c
+a .git
+a d
+a *e
+cd a
+la
+cd d
+pwd
+cd ..
+pwd

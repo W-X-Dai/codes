@@ -1,0 +1,26 @@
+10 16
+/ *a
+/ *b
+/ *c
+a d
+c z
+/ *f
+f p
+b *m
+m q
+ls
+cd a
+ls
+cd ..
+cd b
+cd m
+pwd
+ls
+cd ..
+cd .
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+pwd

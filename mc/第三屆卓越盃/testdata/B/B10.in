@@ -1,0 +1,11 @@
+1 10
+pwd
+la
+ls
+cd /
+cd ..
+cd .
+ls
+la
+cd oops
+pwd

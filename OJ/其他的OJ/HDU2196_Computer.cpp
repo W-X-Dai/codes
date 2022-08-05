@@ -54,7 +54,7 @@ int main(){
 
 //    cout<<s1<<" "<<s2<<'\n';
 
-    cout<<s1<<" "<<s2<<'\n';
+//    cout<<s1<<" "<<s2<<'\n';
     for(int i=1;i<=n;++i){
          cout<<dp[i]<<" ";
     }

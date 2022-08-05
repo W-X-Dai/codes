@@ -1,0 +1,50 @@
+20 30
+/ *a
+a *b
+b *c
+c *d
+d *e
+e *f
+f *g
+g *h
+h *i
+i *j
+j *k
+k *l
+l *m
+m *n
+n *o
+o *p
+p *q
+q *w
+w *x
+cd a
+cd b
+pwd
+cd c
+cd d
+pwd
+cd e
+cd f
+cd g
+pwd
+cd h
+cd i
+ls
+cd j
+cd k
+ls
+pwd
+pwd
+cd l
+cd m
+ls
+cd n
+cd o
+pwd
+cd p
+cd q
+cd w
+pwd
+cd x
+pwd

@@ -1,0 +1,45 @@
+20 25
+/ *distinguish_cup
+distinguish_cup *sol
+sol *A
+sol *B
+B problem.conf
+B std.cpp
+B testdata.sh
+A sol.cpp
+A helloworld
+A .vscode
+B .git
+/ .vimrc
+/ .bashrc
+/ .viminfo
+/ .profile
+B *hahaha
+hahaha haha
+hahaha ha
+hahaha hahahaha
+ls
+la
+cd distinguish_cup
+ls
+cd sol
+la
+cd A
+la
+cd ..
+pwd
+cd B
+la
+cd hahaha
+ls
+pwd
+cd .
+cd ..
+cd ..
+pwd
+cd ..
+pwd
+cd ..
+pwd
+cd ..
+pwd

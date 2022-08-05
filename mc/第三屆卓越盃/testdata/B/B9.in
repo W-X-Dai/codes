@@ -1,0 +1,50 @@
+20 30
+/ *110_summer_vacation_apcs
+/ *C++
+/ *codebook
+/ *contests
+/ *head
+/ *mc
+codebook *autojudge
+codebook BIT
+codebook *struct
+mc *1
+mc *111
+1 content.md
+/ .vimrc
+/ .git
+head assign_root_tree.h
+head def.h
+head random_root_tree.h
+contests NHDK
+contests YTP
+la
+cd 110_summer_vacation_apcs
+pwd
+cd ..
+cd codebook
+ls
+cd autojudge
+cd ..
+cd BIT
+la
+cd ..
+cd struct
+cd .
+pwd
+cd ..
+cd ..
+cd ..
+cd .
+cd ..
+cd ...
+cd ....
+ls
+la
+pwd
+cd head
+la
+cd ..
+cd mc
+la
+pwd

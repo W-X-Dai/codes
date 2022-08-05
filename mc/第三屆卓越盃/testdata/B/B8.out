@@ -1,0 +1,35 @@
+bash: cd: happy: Not a directory
+bash: cd: heool: No such file or directory
+bash: cd: qwertyuiopasdfghjklzxcvbnm1234567890qwertyuiopasdfghjklzxcvbnm1234567890: No such file or directory
+happy
+/
+happy
+.
+..
+happy
+bash: cd: happpy: No such file or directory
+bash: cd: happpppy: No such file or directory
+bash: cd: jfoasehmd: No such file or directory
+bash: cd: ...: No such file or directory
+bash: cd: q123456787: No such file or directory
+.
+..
+happy
+happy
+bash: cd: laoos: No such file or directory
+bash: cd: ls: No such file or directory
+bash: cd: la: No such file or directory
+bash: cd: pwd: No such file or directory
+bash: cd: happy: Not a directory
+.
+..
+happy
+/
+happy
+bash: cd: zxcvbnm: No such file or directory
+bash: cd: happy: Not a directory
+/
+.
+..
+happy
+/
