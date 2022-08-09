@@ -3,7 +3,7 @@
 using namespace std;
 
 inline void subtask1(int id){
-    string s1=to_string(id)+".in";
+    string s1="A"+to_string(id)+".in";
     
     ofstream f1(s1);
     f1<<3<<" "<<rnd.next(1,3)<<'\n';
@@ -12,14 +12,14 @@ inline void subtask1(int id){
 }
 
 inline void subtask2(int id){
-    string s1=to_string(id)+".in";
-    string s2=to_string(id)+".out";
+    string s1="A"+to_string(id)+".in";
+    string s2="A"+to_string(id)+".out";
     
     ofstream f1(s1);
     int n=rnd.next(70000,100000);
     f1<<n<<" "<<rnd.next(1,n)<<'\n';
     for(int i=0;i<n;++i){
-        f1<<rnd.next(1,n)<<" \n"[i==n-1];
+        f1<<rnd.next(0,n)<<" \n"[i==n-1];
     }
 }
 int k[100005],vis[100005],s,n,cnt;
@@ -27,7 +27,7 @@ int k[100005],vis[100005],s,n,cnt;
 inline void open(int x){
 //    cout<<x<<" "<<k[x]<<'\n';
     if(!x || vis[x])return;
- 
+    
     ++cnt,vis[x]=1;
     open(k[x]);
 }
@@ -38,8 +38,8 @@ inline void init(){
 }
 
 inline void fillans(int id){
-    string s1=to_string(id)+".in";
-    string s2=to_string(id)+".out";
+    string s1="A"+to_string(id)+".in";
+    string s2="A"+to_string(id)+".out";
 
     ifstream f1(s1);
     ofstream f2(s2);
@@ -53,12 +53,12 @@ inline void fillans(int id){
 }
 
 int main(){
-    /*
+    
     for(int i=4;i<=6;++i)
         subtask1(i);
     for(int i=7;i<=10;++i)
         subtask2(i);
-    */
+    
     for(int i=1;i<=10;++i)
         fillans(i);
 }
