@@ -1,47 +1,65 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#define eb emplace_back
 using namespace std;
 
-int arr[5000],e;
 
-void insert(int x){
-    e++;
-    arr[e]=x;
-    int tmp=e;
+struct heap{
+    int arr[200005],pt;
+    void insert(int x){
+        arr[pt]=x;
+        int id=pt;
+        while(id>>1){
+        //    cout<<(id>>1)<<'\n';
+            if(arr[id]<arr[id>>1])swap(arr[id],arr[id>>1]);
+            //else return;
+            id>>=1;
+        }
+        ++pt;arr[pt]=0x3f3f3f3f;
+    //    show();
+    }
     
-    while(tmp>1 && arr[tmp]>arr[tmp/2]){
-        swap(arr[tmp],arr[tmp/2]);
-        tmp/=2;
+    void show(){
+        for(int i=1;i<=pt;++i)cout<<arr[i]<<" \n"[i==pt];
+        return;
     }
-}
+    void pop(){
+        swap(arr[pt],arr[1]);
+        arr[pt]=0x3f3f3f3f;--pt;
 
-void pop(){
-    swap(arr[1],arr[e]);
-    int tmp=1;
-
-    while(tmp<=e && max(arr[tmp*2],arr[tmp*2+1])>arr[tmp]){
-        if(arr[tmp*2]>arr[tmp*2+1]){
-            swap(arr[tmp],arr[tmp*2]);
-            tmp*=2;
+        int id=1;
+        while((id<<1)<=pt){
+            int ch=(id<<1)+(arr[id<<1]>arr[id<<1|1]);
+            if(arr[ch]<arr[id])swap(arr[ch],arr[id]);
+            else return;
+            id=ch;
         }
-        else {    
-            swap(arr[tmp],arr[tmp*2+1]);
-            tmp*=2,tmp++;
-        }
+        return;
     }
+    int top(){
+        return arr[1];
+    }
+    
+    
+} pq;
 
-
-}
+int n,x;
 
 int main(){
-    int n,x;
+    ios::sync_with_stdio(0),cin.tie(0);
 
-    e=0;
-    cin >>n;
-    for(int i=0;i<n;i++){
-        cin >>x;
-        insert(x);
+    freopen("input","r",stdin);
+
+    cin >>n;pq.pt=1;
+    for(int i=0;i<n;++i){
+        cin >>x;pq.insert(x);
     }
-    pop();
-    cout<<arr[1]<<'\n';
-
+    
+    
+    for(int i=0;i<n;++i){
+    //    pq.show();
+        cout<<pq.top()<<" \n"[i==n-1];
+        pq.pop();
+    }
+    return 0;
 }

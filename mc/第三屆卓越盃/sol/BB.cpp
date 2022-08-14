@@ -4,7 +4,7 @@ using namespace std;
 
 int n,m,position;
 vector<string> pwd,mp;
-vector<int> v[22];
+vector<int> v[22],folder;
 
 inline int find(string s){
     for(int i=0;i<mp.size();++i){
@@ -21,18 +21,59 @@ string rename(string s){
 
 //ls
 inline void func1(){
-    vector<string>tmp;
-
+    vector<string> tmp;
+    for(int i:v[position]){
+        tmp.eb(mp[i]);
+    }
+    sort(tmp.begin(),tmp.end());
+    for(auto i:tmp)
+        if(i[0]!='.')cout<<i<<'\n';
+    return;
 }
 
 //la
-inline void func2();
+inline void func2(){
+    cout<<".\n..\n";
+    vector<string> tmp;
+    for(int i:v[position]){
+        tmp.eb(mp[i]);
+    }
+    sort(tmp.begin(),tmp.end());
+    for(auto i:tmp)
+        if(i[0]!='.')cout<<i<<'\n';
+    return;    
+}
 
 //pwd
-inline void func3();
+inline void func3(){
+    if(pwd.empty())cout<<"/\n";
+    else{
+        for(auto i:pwd)cout<<"/"<<i;
+        cout<<'\n';
+    }
+    return;
+}
 
 //cd
-inline void func4();
+inline void func4(){
+    string x;cin >>x;
+    if(x==".")return;
+    if(x==".."){
+        if(pwd.empty())return;
+        pwd.pop_back();
+        position=find(pwd.back());
+        return;
+    }
+    int id=find(x);
+    for(int i:v[position]){
+        if(i==id){
+            pwd.eb(id);
+            position=id;
+            return;
+        }
+    }
+
+}
 
 int main(){
     ios::sync_with_stdio(0),cin.tie(0);    
@@ -42,6 +83,10 @@ int main(){
     for(int i=1;i<n;++i){
         string a,b;
         cin >>a>>b;
+
+        if(b[0]!='*')folder.eb(0);
+        else folder.eb(1);
+
         b=rename(b);
         if(!find(a))mp.eb(a);
         if(!find(b))mp.eb(b);

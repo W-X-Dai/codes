@@ -4,7 +4,7 @@
 #define ff first
 #define ss second
 #define eb emplace_back
-#define ll long long
+#define int long long
 
 using namespace std;
 
@@ -28,7 +28,7 @@ inline void dfs(int root,int fa){
     }
 }
 
-int main(){
+signed main(){
     cin >>n>>k;
     for(int i=1;i<=n;++i)cin >>w[i];
     for(int i=0;i<n-1;++i){
