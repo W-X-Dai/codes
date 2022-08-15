@@ -3,20 +3,21 @@
 using namespace std;
 
 
-#ifndef ttest
-#ifdef _STL_ALGO_H
-#error Could not use evil items
-#endif
-#ifdef _STL_MAP_H
-#error Could not use evil items
-#endif
-#ifdef _STL_SET_H
-#error Could not use evil items
-#endif
-#ifdef _STL_QUEUE_H
-#error Could not use evil items
-#endif
-#endif
+	#ifndef ttest
+		#ifdef _STL_ALGO_H
+		#error Could not use evil items
+		#endif
+		#ifdef _STL_MAP_H
+		#error Could not use evil items
+		#endif
+		#ifdef _STL_SET_H
+		#error Could not use evil items
+		#endif
+		#ifdef _STL_QUEUE_H
+		#error Could not use evil items
+		#endif
+	#endif
+
 
 #ifndef __SORT_H__
 #define __SORT_H__
@@ -29,3 +30,5 @@ extern "C" {
 #endif
 
 #endif
+
+

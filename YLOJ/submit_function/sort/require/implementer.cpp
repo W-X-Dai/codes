@@ -1,7 +1,10 @@
 #include "sort.h"
+#ifdef __STL_ALGO_H
+#error 111
+#endif
+
 
 static int __n,__arr[200005];
-
 
 int main(){
 	std::cin >>__n;
@@ -16,3 +19,5 @@ int main(){
 
 	return 0;
 }
+
+
