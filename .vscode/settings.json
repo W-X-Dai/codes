@@ -74,5 +74,7 @@
         "bit": "cpp",
         "charconv": "cpp",
         "variant": "cpp"
-    }
+    },
+    "editor.fontFamily": "'Fira Code'",
+    "editor.fontWeight": "500"
 }
