@@ -1,6 +1,6 @@
-// Problem: E. Guess the Cycle Size
+// Problem: A. Two Elevators
 // Contest: Codeforces - Codeforces Round #820 (Div. 3)
-// URL: https://codeforces.com/contest/1729/problem/E
+// URL: https://codeforces.com/contest/1729/problem/A
 // Memory Limit: 256 MB
 // Time Limit: 1000 ms
 // 
@@ -22,26 +22,18 @@ using namespace std;
 const int N=1e5+5;
 
 inline void sol(){
-	int lb=1,rb=18,c=18,result;
-	
-	while(lb<rb){
-		cout<<"? "<<1<<" "<<(lb+rb>>1)<<endl;
-		cout<<lb<<" "<<rb<<endl;
-		cin >>result;
-		if(result==-1)rb>>=1;
-		else{
-			lb=max(result,lb+rb>>1);
-			if(lb>rb)swap(lb,rb);
-		}
-		
-		if(!result)return;
-	}
-	cout<<"! "<<lb<<endl;
+	int a,b,c,cnta,cntb;
+	cin >>a>>b>>c;
+	cnta=abs(a-1);cntb=abs(c-b)+abs(c-1);
+	if(cnta==cntb)cout<<3<<'\n';
+	else if(cnta>cntb)cout<<2<<'\n';
+	else cout<<1<<'\n';
 	return;
 }
 
 int32_t main() {
-//    ios::sync_with_stdio(0),cin.tie(0);
-    sol();
+    ios::sync_with_stdio(0),cin.tie(0);
+    int t;cin >>t;
+    while(t--)sol();
     return 0;
 }

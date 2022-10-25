@@ -22,26 +22,25 @@ using namespace std;
 const int N=1e5+5;
 
 inline void sol(){
-	int lb=1,rb=18,c=18,result;
+	int lb=1,rb=18,result;
 	
-	while(lb<rb){
-		cout<<"? "<<1<<" "<<(lb+rb>>1)<<endl;
-		cout<<lb<<" "<<rb<<endl;
+	while(lb!=rb){
+		cout<<"? "<<1<<" "<<(lb+rb>>1)<<'\n';
 		cin >>result;
 		if(result==-1)rb>>=1;
 		else{
 			lb=max(result,lb+rb>>1);
 			if(lb>rb)swap(lb,rb);
 		}
-		
 		if(!result)return;
 	}
-	cout<<"! "<<lb<<endl;
+	cout<<"! "<<lb<<'\n';
 	return;
 }
 
 int32_t main() {
-//    ios::sync_with_stdio(0),cin.tie(0);
-    sol();
+    ios::sync_with_stdio(0),cin.tie(0);
+    int t;cin >>t;
+    while(t--)sol();
     return 0;
 }
