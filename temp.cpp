@@ -1,47 +1,13 @@
-// Problem: E. Guess the Cycle Size
-// Contest: Codeforces - Codeforces Round #820 (Div. 3)
-// URL: https://codeforces.com/contest/1729/problem/E
-// Memory Limit: 256 MB
-// Time Limit: 1000 ms
-// 
-// Powered by CP Editor (https://cpeditor.org)
-
-//Author:W_X_Dai
-//Date:2022/09/06
-
-#include <bits/stdc++.h>
-#define int long long
-#define eb emplace_back
-#define pii pair<int,int>
-#define ff first
-#define ss second
-#define m_p make_pair
-
+#include<bits/stdc++.h>
 using namespace std;
 
-const int N=1e5+5;
-
-inline void sol(){
-	int lb=1,rb=18,c=18,result;
-	
-	while(lb<rb){
-		cout<<"? "<<1<<" "<<(lb+rb>>1)<<endl;
-		cout<<lb<<" "<<rb<<endl;
-		cin >>result;
-		if(result==-1)rb>>=1;
-		else{
-			lb=max(result,lb+rb>>1);
-			if(lb>rb)swap(lb,rb);
-		}
-		
-		if(!result)return;
-	}
-	cout<<"! "<<lb<<endl;
-	return;
-}
-
-int32_t main() {
-//    ios::sync_with_stdio(0),cin.tie(0);
-    sol();
-    return 0;
+int main(){
+    int a[3][3];
+    for(int i=0;i<3;++i){
+        for(int j=0;j<3;++j)
+        cin >>a[i][j];
+    }
+    for(auto i:a){
+        cout<<i<<'\n';
+    }
 }

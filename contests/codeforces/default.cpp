@@ -1,6 +1,3 @@
-//Author:W_X_Dai
-//Date:2022/09/06
-
 #include <bits/stdc++.h>
 #define int long long
 #define eb emplace_back

@@ -7,7 +7,7 @@ int main(int argc, char* argv[]){
     registerGen(argc, argv, 1);
 
     int a[5],arr[5][6];
-    for(int i=0;i<5;++i)a[i]=rnd.next(-20,20);
+    for(int i=0;i<5;++i)a[i]=rnd.next(-10,10);
 
     for(int i=0;i<5;++i){
         long long sum=0;
