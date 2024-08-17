@@ -26,7 +26,7 @@ void bfs(int id){
 }
 
 int main(){
-	cin >>n;
+	cin >>n;	
 	for(int i=0;i<n;++i){
 		depth[i+1].ss=i+1;
 		depth[i+1].ff=0;
