@@ -1,0 +1,186 @@
+#include<bits/stdc++.h>
+#define eb emplace_back
+#define m_p make_pair
+#define ff first
+#define ss second
+using namespace std;
+
+double data_input[7][640];
+
+//x is the features, y is the label
+vector<vector<double>> x;
+vector<int> y;
+
+//read data
+void read_data(string file_name, int gates, int n){
+    fstream fin(file_name, ios::in);
+    if(!fin.is_open())cout<<"error";
+
+    vector<double> tmp;
+    double in;
+    for(int i=0;i<n;++i){
+        tmp.clear();
+        for(int j=0;j<gates;++j){
+            fin >>in;
+            tmp.eb(in);
+        }
+        fin >>in;
+        y.eb(in);
+        x.eb(tmp);
+    }
+
+    fin.close();
+}
+
+struct TreeNode{
+    int feature_index, label, n0, n1;
+    double threshold, gini;
+    TreeNode *left, *right;
+    TreeNode(int feature_index=-1,int label=-1,int n0=0,int n1=0,
+            double threshold=0, double gini=1,
+            TreeNode *left=nullptr, TreeNode *right=nullptr):
+            feature_index(feature_index), label(label), n0(n0), n1(n1),
+            threshold(threshold), gini(gini),
+            left(left), right(right){}
+};
+
+class DecisionTree{
+private:
+    TreeNode *root;
+    int max_depth, min_leaves;
+
+public:
+    //initialization
+    DecisionTree(int min_l=5, int max_d=10){
+        root=nullptr;
+        min_leaves=min_l;
+        max_depth=max_d;
+    }
+
+    //ginis
+    double gini_index(const vector<int> &v){
+        int n=v.size();
+        if(!n)return 0;
+
+        double p1=count(v.begin(), v.end(), 1)/(double)n;
+        double p0=1.0-p1;
+        
+        return 1-(p0*p0+p1*p1);
+    }
+
+    double gini_gain(const vector<int> &y, const vector<int> &y_left, const vector<int> &y_right){
+        double gini_origin=gini_index(y);
+        double gini_new=(y_left.size()*gini_index(y_left)+y_right.size()*gini_index(y_right))/y.size();
+        return gini_origin-gini_new;
+    }
+
+    //int is the feature id, and double is the threshold
+    pair<int, double> best_split(const vector<vector<double>> &x, const vector<int> &y){
+        int best_feature=-1;
+        double best_threshold=numeric_limits<double>::max();
+        double best_gain=-1;
+
+        int n=x.size(), n_feature=x[0].size();
+        for(int feature=0;feature<n_feature;++feature){
+            //choose one of the features and put the feature value, label together
+            vector<pair<double, int>> v;
+            for(int i=0;i<n;++i){
+                v.eb(m_p(x[i][feature], y[i]));
+            }
+            sort(v.begin(), v.end());
+            double tmp_threshold;
+            for(int i=1;i<n;++i){
+                tmp_threshold=(v[i-1].ff+v[i].ff)/2.0;
+                vector<int> y_left, y_right;
+                for(int j=0;j<n;++j){
+                    if(v[j].ff<tmp_threshold)y_left.eb(v[j].ss);
+                    else y_right.eb(v[j].ss);
+                }
+                if(y_left.size()<min_leaves || y_right.size()<min_leaves)continue;
+                double gain=gini_gain(y, y_left, y_right);
+                if(gain>best_gain){
+                    best_gain=gain;
+                    best_feature=feature;
+                    best_threshold=tmp_threshold;
+                }
+
+            }
+        }
+        return m_p(best_feature, best_threshold);
+    }
+
+    //build tree
+    TreeNode *build(const vector<vector<double>> &x, const vector<int> &y, const int depth=0){
+        int n0=count(y.begin(), y.end(), 0);
+        int n1=y.size()-n0;
+
+        if(y.size()<min_leaves || depth>max_depth || gini_index(y)==0){
+            return new TreeNode(-1, (bool)(n1>n0));
+        }
+
+        auto [feature, threshold]=best_split(x, y);
+        if(feature==-1)return new TreeNode(-1, (bool)(n1>n0));
+
+        vector<vector<double>> x_left, x_right;
+        vector<int> y_left, y_right;
+
+        for(int i=0;i<y.size();++i){
+            if(x[i][feature]>threshold){
+                x_right.eb(x[i]);
+                y_right.eb(y[i]);
+            }else{
+                x_left.eb(x[i]);
+                y_left.eb(y[i]);
+            }
+        }
+
+
+        TreeNode *left_subtree=build(x_left, y_left, depth+1);
+        TreeNode *right_subtree=build(x_right, y_right, depth+1);
+        
+
+        return new TreeNode(feature, -1, n0, n1, threshold, gini_index(y), left_subtree, right_subtree);
+    }
+
+    void fit(const vector<vector<double>> &x, const vector<int> &y){
+        root=build(x, y);
+    }
+
+    int predict_one(const vector<double> x, TreeNode *node){
+        int feature=node->feature_index;
+        double threshold=node->threshold;
+
+        if(feature==-1)return node->label;
+        if(x[feature]>threshold)return predict_one(x, node->right);
+        else return predict_one(x, node->left);
+    }
+
+    vector<int> predict(const vector<vector<double>> &v){
+        vector<int> tmp;
+        for(auto i:v)tmp.eb(predict_one(i, root));
+        return tmp;
+    }
+
+    double accuracy(const vector<vector<double>> &x, const vector<int> &y){
+        vector<int> result=predict(x);
+        int corrects=0;
+        for(int i=0;i<y.size();++i){
+            if(result[i]==y[i])++corrects;
+        }
+        return (double)corrects/(double)y.size();
+    }
+};
+
+int main(){
+    DecisionTree tree;
+    read_data("data", 7, 640);
+    
+    tree.fit(x, y);
+    
+    cout<<tree.accuracy(x, y)<<'\n';
+    read_data("testdata", 7, 20);
+    cout<<tree.accuracy(x, y)<<'\n';
+
+}
+
+
