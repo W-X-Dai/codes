@@ -1,29 +1,37 @@
 #include<bits/stdc++.h>
+#define eb emplace_back
 using namespace std;
 
-double data_input[7][640];
+int n, m, l, q, bad[10005];
+vector<int> v[10005];
 
-void read_data(){
-    fstream fin("a", ios::in);
-    if(!fin.is_open())cout<<"error";
+void dfs(int x){
+    if(v[x].empty())return;
+    bad[x]=1;
 
-    for(int i=0;i<7;++i)
-    for(int j=0;j<640;++j)
-        fin >>data_input[i][j];
+    for(auto i:v[x]){
+        bad[i]=1;
+        dfs(i);
+    }
 }
 
-struct node{
-    int data;
-    node *next;
-};
-
-struct decision_tree{
-
-
-
-};
-
 int main(){
-    read_data();
-    cout<<data_input[0][0];
+    cin >>n>>m>>l>>q;
+
+    int a, b;
+    for(int i=0;i<m;++i){
+        cin >>a>>b;
+        v[a].eb(b);
+    }
+    for(int i=0;i<l;++i){
+        cin >>a;
+        if(bad[a])continue;
+        dfs(a);
+    }
+
+    for(int i=0;i<q;++i){
+        cin >>a;
+        cout<<(bad[a] ? "TUIHUOOOOOO" : "YA~~")<<'\n';
+    }
+
 }

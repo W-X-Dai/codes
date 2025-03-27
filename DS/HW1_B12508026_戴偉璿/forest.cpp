@@ -16,10 +16,10 @@ int main(){
             double tmpacc=0;
             for(int k=0;k<10;++k){
                 progress+=i;
+                cout<<(progress/118800)*100<<"%\n";
                 forest.fit(train.x, train.y);
                 tmpacc+=forest.accuracy(test.x, test.y);
             }
-            cout<<(progress/118800)*100<<"%\n";
             tmp+=tmpacc/10;
         }
         fout<<i<<" "<<tmp/20<<'\n';
@@ -34,10 +34,10 @@ int main(){
             double tmpacc=0;
             for(int k=0;k<10;++k){
                 progress+=i;
+                cout<<(progress/118800)*100<<"%\n";
                 forest.fit(train.x, train.y);
                 tmpacc+=forest.accuracy(test.x, test.y);
             }
-            cout<<(progress/118800)*100<<"%\n";
             tmp+=tmpacc/10;
         }
         fout<<i<<" "<<tmp/20<<'\n';
