@@ -33,5 +33,8 @@ int main(){
         cin >>a;
         cout<<(bad[a] ? "TUIHUOOOOOO" : "YA~~")<<'\n';
     }
+    for(int i=0;i<n;++i){
+
+    }
 
 }
