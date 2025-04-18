@@ -12,6 +12,7 @@ int find_max_edge(int x){
 }
 
 void cut_max(int n, int m){
+    cout<<n<<" "<<m<<'\n';
     //n<m
     if(n>m)swap(n, m);
     if(!n)return;

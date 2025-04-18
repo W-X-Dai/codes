@@ -1,4 +1,6 @@
 #include<bits/stdc++.h>
+#include <thread>
+
 #define eb emplace_back
 #define m_p make_pair
 #define ff first
@@ -325,27 +327,58 @@ private:
 public:
     RandomForest(int n_trees=11):n_trees(n_trees){}
 
-    void fit(const vector<vector<double>> &x, const vector<int> &y){
-        int N=y.size();
+    // void fit(const vector<vector<double>> &x, const vector<int> &y){
+    //     int N=y.size();
 
+    //     random_device rd;
+    //     mt19937 gen(rd());
+    //     uniform_int_distribution<int> dist(0, N-1);
+
+    //     for(int i=0;i<n_trees;++i){
+    //         vector<vector<double>> x_sample;
+    //         vector<int> y_sample;
+
+    //         for(int j=0;j<N;++j){
+    //             int index=dist(gen);
+    //             x_sample.eb(x[index]);
+    //             y_sample.eb(y[index]);
+    //         }
+
+    //         DecisionTree tmp;
+    //         tmp.fit(x_sample, y_sample);
+    //         trees.eb(tmp);
+    //     }
+    // }
+
+    void fit(const vector<vector<double>> &x, const vector<int> &y){
+        int N = y.size();
         random_device rd;
         mt19937 gen(rd());
-        uniform_int_distribution<int> dist(0, N-1);
-
-        for(int i=0;i<n_trees;++i){
-            vector<vector<double>> x_sample;
-            vector<int> y_sample;
-
-            for(int j=0;j<N;++j){
-                int index=dist(gen);
-                x_sample.eb(x[index]);
-                y_sample.eb(y[index]);
-            }
-
-            DecisionTree tmp;
-            tmp.fit(x_sample, y_sample);
-            trees.eb(tmp);
+        uniform_int_distribution<int> dist(0, N - 1);
+    
+        vector<thread> threads;
+        vector<DecisionTree> tmp_trees(n_trees);
+    
+        for(int i = 0; i < n_trees; ++i){
+            threads.emplace_back([&, i]() {
+                vector<vector<double>> x_sample;
+                vector<int> y_sample;
+    
+                for(int j = 0; j < N; ++j){
+                    int index = dist(gen);
+                    x_sample.eb(x[index]);
+                    y_sample.eb(y[index]);
+                }
+    
+                DecisionTree tmp;
+                tmp.fit(x_sample, y_sample);
+                tmp_trees[i] = tmp;  // 每個 thread 寫到自己位置
+            });
         }
+    
+        for(auto &t : threads) t.join();  // 等待所有樹完成
+    
+        trees = std::move(tmp_trees);  // 搬到 class 成員
     }
 
     int predict_one(const vector<double> &x){
