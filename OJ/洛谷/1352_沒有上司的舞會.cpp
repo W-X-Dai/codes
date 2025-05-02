@@ -6,22 +6,14 @@ vector<int> v[10000];
 int n,a,b,arr[10000],dp[10000][2];
 int rt[10000],root;
 
-inline void dfs(int root){
-//    cout<<root<<'\n';
-    for(int i:v[root]){
-        dfs(i);
+void dfs(int root) {
+    for (int i:v[root])dfs(i);
+    dp[root][1]=arr[root];
+    dp[root][0]=0;
+    for (int i:v[root]){
+        dp[root][1]+=dp[i][0];
+        dp[root][0]+=max(dp[i][0], dp[i][1]);
     }
-    int cnt=0;
-    for(int i:v[root]){
-        cnt+=dp[i][0];
-    }
-    dp[root][1]=arr[root]+cnt;
-
-    int mx=0;
-    for(int i:v[root]){
-        mx+=max(dp[i][0],dp[i][1]);
-    }
-    dp[root][0]=mx;
 }
 
 int main(){
