@@ -3,52 +3,70 @@
 #define eb emplace_back
 using namespace std;
 
-const int N=1000000, table_size=59, max_probing_times=2;
+const int N=1000000, table_size=30, max_probing_times=10;
 
 int arr[25]={10102109, 10106402, 10106918, 12508729, 12508629, 12508765, 12508068, 12508705, 12508842, 11508011, 11508817, 11508388, 11508189, 11508331, 11508675, 11508521, 11508287, 11508863, 11508979, 11508532, 11508035, 11508599, 10613285, 13945978, 12945157};
 
 int hash_table[table_size];
 
-//i:原始資料的位置, id:hash table中的位置, x:探查的次數
+// ⬇️ 統計變數
+int collisions = 0;
+int max_probe = 0;
+int total_probe = 0;
+
+// i: 原始資料的位置, id: hash table 中的位置, x: 探查次數
 inline void quandratic_probing(int i, int id, int x){
-    while(x>max_probing_times){
-        if(id>=table_size)id%=table_size;
+    // fallback: linear probing
+    while(x > max_probing_times){
+        if(id >= table_size) id %= table_size;
+        ++collisions;
+        ++total_probe;
         if(!hash_table[id]){
-            hash_table[id]=arr[i];
+            hash_table[id] = arr[i];
+            max_probe = max(max_probe, x);
             return;
         }
         ++id;
+        ++x;
     }
-
+    if(hash_table[id]){
+        cout<<"secondary:"<<arr[i]<<" "<<id<<endl;
+    }
     if(!hash_table[id]){
-        hash_table[id]=arr[i];
+        hash_table[id] = arr[i];
+        max_probe = max(max_probe, x);
+        total_probe += x;
         return;
     }
-    id=(id+x*x)%table_size;
-    quandratic_probing(i, id, x+1);
+
+    ++collisions;
+    ++total_probe;
+    id = (id + x*x) % table_size;
+    quandratic_probing(i, id, x + 1);
 }
 
 int32_t main(){
-    for(int i=0;i<25;++i){
-        int id=((arr[i]*arr[i]/N)%N)%table_size;
-        if(hash_table[id])quandratic_probing(i, id, 1);
-        else hash_table[id]=arr[i];
+    for(int i = 0; i < 25; ++i){
+        int id = ((arr[i] * arr[i] / N) % N) % table_size;
+        if(hash_table[id]){
+            ++collisions;
+            ++total_probe;
+            quandratic_probing(i, id, 1);
+        }
+        else{
+            hash_table[id] = arr[i];
+            max_probe = max(max_probe, 0LL);
+        }
     }
 
-    for(int i=0;i<table_size;++i){
-        cout<<i<<":"<<hash_table[i]<<'\n';
+    for(int i = 0; i < table_size; ++i){
+        cout << i << ":" << hash_table[i] << '\n';
     }
 
+    // ⬇️ 統計結果輸出
+    cout << "\n📊 Hash 統計結果：\n";
+    cout << "碰撞總次數: " << collisions << '\n';
+    cout << "總探查次數: " << total_probe << '\n';
+    cout << "平均探查次數: " << fixed << setprecision(2) << (1.0 * total_probe / 25) << '\n';
+    cout << "最大探查次數: " << max_probe << '\n';
 }
-/*
-作者：戴偉璿
-日期：2025/05/01
-說明：
-
-使用的方法為mid-square，處理collision的方法為quandratic
-
-為了避免一直找不到空位導致遞迴次數過多而stack overflow，因此設置一個最大探查次數(max_probing_times)，一旦超過這個數值則進行linear probing，由於table size大於資料數量，因此每個資料都能找到位置
-
-
-
-*/
