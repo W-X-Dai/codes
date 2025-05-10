@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 #define eb emplace_back
+#define int long long
 using namespace std;
 
 vector<int> v[1005];
@@ -27,7 +28,7 @@ void dfs(int u){
     }
 }
 
-int main(){
+int32_t main(){
     cin >>n>>m;
     for(int i=1;i<=n;++i)cin >>arr[i];
     for(int i=0;i<n-1;++i){

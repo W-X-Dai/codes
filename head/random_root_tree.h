@@ -1,6 +1,10 @@
 #include<bits/stdc++.h>
-#include "def.h"
-using namespace std;
+#define eb emplace_back
+#define pii pair<int,int>
+#define m_p  make_pair
+#define ff first
+#define ss second
+#define ll long longusing namespace std;
 
 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 mt19937 rd(seed); 
