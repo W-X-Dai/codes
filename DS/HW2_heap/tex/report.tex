@@ -1,0 +1,138 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{xeCJK}
+\usepackage{fontspec}
+\setCJKmainfont{Noto Serif CJK TC}[Script=CJK]
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt}
+\addtolength{\topmargin}{-2.5pt}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage}
+\linespread{1.3}
+
+\title{資料結構HW2-Heap}
+\author{B12508026戴偉璿}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\lhead{資料結構HW2-Heap}
+\rhead{B12508026戴偉璿}
+
+\newpage
+
+\section{程式內容解析}
+\subsection{前處理}
+
+\subsubsection{輸出檔案}
+首先使用\texttt{init()}函數宣告一個\texttt{ofstream}物件以清空\texttt{output}檔案，
+接下來宣告一個\texttt{append}模式的\texttt{ofstream}物件\texttt{fout}以便於後續寫入排程結果。
+
+\subsubsection{輸入檔案}
+接著使用\texttt{read\_data()}函數，調用\texttt{ifstream}物件讀取\texttt{data}檔案，
+這邊我把.csv檔案換成以空格分隔的純文字檔案方便處理
+
+\subsubsection{型態別}
+由於一個病人有三個數值（id，抵達時間，優先度）要紀錄，因此使用\texttt{struct}來定義一個\texttt{patient}結構體，方便處理
+
+\subsubsection{檢查}
+設計了一個\texttt{check()}函數來檢查是否有正確輸入，避免讀取到一堆亂碼或是錯誤的數值，
+這個函數會輸出所有輸入的資料在終端機，由於我們處理過後的資料是直接使用檔案流輸出到檔案，因此不影響結果。
+
+\subsection{Heap}
+\subsubsection{Heap結構體}
+Heap使用一個先前宣告過的\texttt{patient}結構體陣列來儲存病人資料，
+並且使用一個整數變數\texttt{pt}來紀錄目前Heap的大小，\texttt{pt}的數值本身也代表這個Heap最後一個元素的index。
+
+\subsubsection{插入}
+插入到Heap的最後面，接下來再一一與他的父節點比較，
+如果比父節點大就交換位置，直到不需要交換為止。
+
+使用了位元運算計算父節點的index，
+這樣可以節省一些運算時間。
+
+\subsubsection{頂端元素}
+取得Heap的頂端元素就是取得\texttt{hp[1]}
+
+\subsubsection{刪除頂端元素}
+通常取得頂端元素之後會將其刪除，
+刪除頂端元素就是將最後一個元素放到頂端，將\texttt{pt}減一，
+接下來再一一與他的子節點比較，
+如果比子節點小就交換位置，直到不需要交換為止。
+
+\subsubsection{是否為空}
+判斷Heap是否為空就是判斷\texttt{pt}是否為0。
+
+\subsubsection{除錯}
+這個結構體提供了一個\texttt{show()}函數，
+可以列印出Heap的內容，方便除錯。
+
+\subsection{排程}
+排程的過程比較麻煩，我們維護一個\texttt{current\_time}變數來紀錄目前的時間，
+每次從Heap中取出頂端元素（也就是目前優先度最高的病人）之後，
+就將時間增加他需要的治療時間，
+接著將這個病人寫入\texttt{output}檔案中。
+接下來再將所有抵達時間小於等於目前時間的病人加入Heap中，
+然後再從Heap中取出頂端元素，重複這個過程直到Heap為空。
+如果Heap為空但是還有病人沒有處理完，
+就將時間增加到下一個病人抵達的時間，迴圈會自動判斷並姐將這個病人加入Heap中。
+
+這一部份要非常小心，因為如果一口氣將所有小於當前時間的病人丟到Heap中，
+然後一口氣處理完之後才加入下一組病人，可能會導致處理過程中有優先度更高的病人到來。
+
+\section{排程結果（如output檔案）}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Patient ID & Time & Priority \\
+\hline
+1 & 0$\sim$3 & 3 \\
+2 & 3$\sim$6 & 3 \\
+3 & 6$\sim$9 & 3 \\
+5 & 9$\sim$14 & 2 \\
+4 & 14$\sim$17 & 3 \\
+8 & 17$\sim$22 & 2 \\
+9 & 22$\sim$29 & 1 \\
+13 & 29$\sim$34 & 2 \\
+15 & 34$\sim$39 & 2 \\
+17 & 39$\sim$46 & 1 \\
+20 & 46$\sim$51 & 2 \\
+23 & 51$\sim$56 & 2 \\
+6 & 56$\sim$59 & 3 \\
+26 & 59$\sim$64 & 2 \\
+7 & 64$\sim$67 & 3 \\
+29 & 67$\sim$74 & 1 \\
+10 & 74$\sim$77 & 3 \\
+11 & 77$\sim$80 & 3 \\
+12 & 80$\sim$83 & 3 \\
+14 & 83$\sim$86 & 3 \\
+16 & 86$\sim$89 & 3 \\
+18 & 89$\sim$92 & 3 \\
+19 & 92$\sim$95 & 3 \\
+21 & 95$\sim$98 & 3 \\
+22 & 98$\sim$101 & 3 \\
+24 & 101$\sim$104 & 3 \\
+25 & 104$\sim$107 & 3 \\
+27 & 107$\sim$110 & 3 \\
+28 & 110$\sim$113 & 3 \\
+30 & 113$\sim$116 & 3 \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+\end{document}
