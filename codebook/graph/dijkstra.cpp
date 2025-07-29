@@ -12,29 +12,26 @@ using namespace std;
 const int N=2e5+5;
 
 struct edge{
-    int u, v, w;
+    int v, w;
 };
 
-vector<edge> e;
-int dis[N];
+vector<edge> e[N];
+int dis[N], vis[N];
 
-bool bellman_ford(int n, int s){
+void dijkstra(int n, int s){
     fill(dis, dis+N, inf);
     dis[s]=0;
-    bool relax=0;
     for(int i=1;i<=n;++i){
-        relax=0;
-        for(auto ed:e){
-            int u=ed.u, v=ed.v, w=ed.w;
-            if(dis[u]==inf)continue;
-            if(dis[v]>dis[u]+w){
-                dis[v]=dis[u]+w;
-                relax=1;
-            }
+        int u=0, min_dis=inf;
+        for(int j=1;j<=n;++j)
+            if(!vis[j] and dis[j]<min_dis)
+                u=j, min_dis=dis[j];
+        vis[u]=1;
+        for(auto ed:e[u]){
+            int v=ed.v, w=ed.w;
+            if(dis[v]>dis[u]+w)dis[v]=dis[u]+w;
         }
-        if(!relax)break;
     }
-    return relax;
 }
 
 

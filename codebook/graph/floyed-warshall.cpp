@@ -4,7 +4,6 @@ using namespace std;
 int mp[1005][1005];
 int n,m;
 
-#define REP(i,n) for(int i=0;i<(n);++i)
 inline void warshall(){
     for(int k=0;k<n;++k)
     for(int i=0;i<n;++i)
