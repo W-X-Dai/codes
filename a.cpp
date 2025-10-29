@@ -1,9 +1,9 @@
 #include<bits/stdc++.h>
-#define eb emplace_back
 using namespace std;
 
-vector<int> prime;
-
-int main() {
-
+int main(){
+    int a;
+    cin >>a;
+    if(a>60)cout<<"YES\n";
+    else cout<<"NO\n";
 }
