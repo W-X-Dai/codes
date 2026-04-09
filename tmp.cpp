@@ -1,47 +1,51 @@
-//interval minima
-#include<bits/stdc++.h>
-#define inf 0x3f3f3f3f
-using namespace std;
-
-int n, q, arr[100005];
-
-int target;
-int binary_search(int l, int r){
-//    cout<<l<<" "<<r<<'\n';
-    if(l>r)return -1; // Not found
-    int mid=l+r>>1;
-    if(arr[mid]==target)return mid; // Found the target
-    if(arr[mid]>target)return binary_search(l, mid-1); // Search in the left half
-    return binary_search(mid+1, r); // Search in the right half
-}
+#include <stdio.h>
+#include <stdlib.h>
 
 int main(){
-    cin >>n>>q;
-    for(int i=0;i<n;++i)
-        cin >>arr[i];
-    while(q--){
-        cin >>target;
-        cout<<lower_bound(arr, arr+n, target)-arr<<'\n';
+    int test_cases;
+    scanf("%d", &test_cases);
+    for(int t = 0; t < test_cases; t++){
+        int x, y;
+        scanf("%d%d", &x, &y);
+        if(x > y){
+            printf("NO\n");
+            continue;
+        }
+        if(x == 0 && y % 2 == 0){
+            printf("NO\n");
+            continue;
+        }
+        if(x == y || x + 1 == y){
+            printf("YES\n");
+            int n = x + y;
+            for(int i = 1; i < n; i++){
+                printf("%d %d\n", i, i + 1);
+            }
+            continue;
+        }
+        if((x % 2 == 1 && y % 2 == 1) || (x % 2 == 0 && y % 2 == 0)){
+            printf("YES\n");
+            int d = y - x;
+            int n = x + y;
+            for(int i = 2; i <= 2 + d && i <= n; i++){
+                printf("1 %d\n", i);
+            }
+            for(int i = d + 2; i < n; i++){
+                printf("%d %d\n", i, i + 1);
+            }
+            continue;
+        }
+        else{
+            printf("YES\n");
+            int d = y - x;
+            int n = x + y;
+            for(int i = 2; i < 2 + d && i <= n; i++){
+                printf("1 %d\n", i);
+            }
+            for(int i = d + 1; i < n; i++){
+                printf("%d %d\n", i, i + 1);
+            }
+            continue;
+        }
     }
 }
-/*
-8 8
-1 2 3 4 5 6 7 8
-1 1 4
-1 2 6
-2 0 10
-1 0 7
-1 2 6
-2 3 5
-1 2 7
-1 0 7
-
-6 5
-2 3 5 1 4
-1 0 1
-1 2 4
-2 0 5
-2 2 2 
-1 0 1
-1 2 4
-*/
